@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reference Managers for Scientific Writing</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <script>try{if(localStorage.getItem("shstyle-theme")==="dark"&&!/print-pdf/i.test(location.search))document.documentElement.dataset.theme="dark"}catch(e){}</script>
+  <link rel="stylesheet" href="css/shstyle.css">
+  <link rel="stylesheet" href="css/timer.css">
+  <style>
+    .reveal .qr-wrap { display: flex; gap: 1.2em; align-items: center; }
+    .reveal .qr-wrap svg.qr { width: 260px !important; height: 260px !important; flex: 0 0 auto; }
+    .reveal .links a { display: block; margin: 0.25em 0; }
+    .reveal .schedule td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .reveal .logo-grid a { border: none; }
+  </style>
+  <style>
+    .reveal .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; align-items: center; justify-items: center; }
+    .reveal .logo-grid img { max-width: 180px; max-height: 90px; object-fit: contain; }
+    .reveal .logo-grid a { border: none; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 1 · COVER -->
+    <section class="cover">
+      <span class="kicker">Writing Scientific Documents with AI</span>
+      <h1>Reference Managers<br>for Scientific Writing</h1>
+      <div class="cover-meta">Noé Sámano</div>
+    </section>
+
+    <!-- 2 · SCHEDULE -->
+    <section>
+      <span class="kicker">Today</span>
+      <h2>Three hours, four parts</h2>
+      <table class="schedule">
+        <thead><tr><th>Time</th><th>Part</th><th>What we do</th></tr></thead>
+        <tbody>
+          <tr class="fragment"><td>7:10–7:50</td><td>3.1 Introduction</td><td>Why we cite, Zotero installation, plugins</td></tr>
+          <tr class="fragment"><td>7:50–8:15</td><td>3.2 Capture</td><td>Importing and editing references</td></tr>
+          <tr class="fragment"><td>8:15–8:25</td><td>Break</td><td>Ten minutes</td></tr>
+          <tr class="fragment"><td>8:25–8:55</td><td>3.3 Writing</td><td>Citations in Word, styles, organization</td></tr>
+          <tr class="fragment"><td>8:55–9:45</td><td>3.4 Verification</td><td>Check and complete your references, cite in LaTeX</td></tr>
+          <tr class="fragment"><td>9:45–9:50</td><td>Wrap-up</td><td>Responsible use, takeaways</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 3 · GOALS -->
+    <section>
+      <span class="kicker">Today's goal</span>
+      <h2>By the end, you can…</h2>
+      <ul>
+        <li class="fragment">Explain why reference management matters in academic work</li>
+        <li class="fragment">Install Zotero and its browser and word processor plugins</li>
+        <li class="fragment">Import, organize and tag your sources</li>
+        <li class="fragment">Insert citations and change the citation style</li>
+        <li class="fragment">Detect and fix errors in automatically generated references</li>
+        <li class="fragment">Verify every source you cite</li>
+      </ul>
+    </section>
+
+    <!-- 4 · BRAINSTORM -->
+    <section>
+      <span class="kicker">Warm-up · 5 min</span>
+      <h2>How do we cite today?</h2>
+      <div class="cols">
+        <div>
+          <p>Work in teams. Answer in writing:</p>
+          <ol>
+            <li>What tool do you use to write your references?</li>
+            <li>When did a citation give you trouble?</li>
+            <li>Where do you get your references from?</li>
+          </ol>
+        </div>
+        <div class="activity-meta">
+          <div class="activity-timer" data-minutes="5" data-editable></div>
+        </div>
+      </div>
+      <aside class="notes">Hora prevista: 7:12. Calentamiento de 5 min, termina 7:17.</aside>
+    </section>
+
+    <!-- 5 · DIVIDER -->
+    <section class="divider">
+      <h2>Part 1 · Introduction<br>to citing and reference managers</h2>
+      <aside class="notes">Parte 3.1. Hora prevista de inicio: 7:10. Termina 7:50.</aside>
+    </section>
+
+    <section>
+      <span class="kicker">Citations</span>
+      <h2>A citation shows where an idea comes from</h2>
+      <ul>
+        <li class="fragment">It gives credit to the author</li>
+        <li class="fragment">It lets the reader find and check the source</li>
+        <li class="fragment">It follows a style, such as APA or IEEE</li>
+      </ul>
+      <div class="box-key fragment">Every idea that is not yours needs a citation.</div>
+    </section>
+
+    <section>
+      <span class="kicker">Citation types</span>
+      <h2>Where the citation goes</h2>
+      <table>
+        <thead><tr><th>Type</th><th>Form</th><th>Example (APA 7)</th></tr></thead>
+        <tbody>
+          <tr class="fragment"><td>Parenthetical</td><td>Author and year in parentheses</td><td>Multilayer networks learn representations of data (LeCun et al., 2015).</td></tr>
+          <tr class="fragment"><td>Narrative</td><td>Author in the sentence, year in parentheses</td><td>LeCun et al. (2015) describe multilayer networks that learn representations.</td></tr>
+        </tbody>
+      </table>
+      <ul class="fragment">
+        <li>Two authors: (LeCun &amp; Bengio, 2015) in parentheses; "and" in narrative text</li>
+        <li>Three or more authors: first author plus <em>et al.</em></li>
+      </ul>
+    </section>
+
+    <section>
+      <span class="kicker">Citation types</span>
+      <h2>What you copy or rewrite</h2>
+      <table>
+        <thead><tr><th>Type</th><th>Form</th><th>Example (APA 7)</th></tr></thead>
+        <tbody>
+          <tr class="fragment"><td>Direct quote</td><td>Exact words, quotation marks and page</td><td>"[exact words from the source]" (LeCun et al., 2015, p. [page]).</td></tr>
+          <tr class="fragment"><td>Paraphrase</td><td>Your words, the same idea, still cited</td><td>Models with several processing layers learn representations (LeCun et al., 2015).</td></tr>
+          <tr class="fragment"><td>Summary</td><td>Several ideas from a section, condensed</td><td>The review presents multilayer models as learners of representations (LeCun et al., 2015).</td></tr>
+        </tbody>
+      </table>
+      <p class="muted fragment">Quotes need the page. Paraphrases and summaries need the citation too.</p>
+    </section>
+
+    <section>
+      <span class="kicker">Academic integrity</span>
+      <h2>Changing the words is not enough</h2>
+      <div class="cols">
+        <div>
+          <p class="muted">Original</p>
+          <p>"Reference managers reduce the time spent on bibliographies."</p>
+        </div>
+        <div class="fragment">
+          <p class="muted">Rewritten, with no citation</p>
+          <p>"Bibliography tools cut the time authors spend on reference lists."</p>
+          <p><strong>Still plagiarism:</strong> the idea is not yours.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="kicker">Checkpoint</span>
+      <div class="quiz" data-correct="c">
+        <p class="quiz-question">Which sentence needs a citation?</p>
+        <button class="quiz-option" data-opt="a">I compare three reference managers in this report.</button>
+        <button class="quiz-option" data-opt="b">Water boils at 100 °C at sea level.</button>
+        <button class="quiz-option" data-opt="c">Handwritten notes help students remember more.</button>
+        <div class="quiz-explain">
+          <p><strong>Correct: C.</strong> It reports a result that researchers measured, so it comes from a source.</p>
+          <p><strong>A:</strong> It is your own work, so you do not cite it.</p>
+          <p><strong>B:</strong> It is common knowledge that any reader already has.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="kicker">Reference managers</span>
+      <h2>A reference manager stores your sources</h2>
+      <ul>
+        <li class="fragment">It keeps your references in one library</li>
+        <li class="fragment">It inserts citations and creates the bibliography for you</li>
+        <li class="fragment">Zotero is one free example</li>
+      </ul>
+    </section>
+
+    <section>
+      <span class="kicker">Context</span>
+      <h2>What a reference manager does</h2>
+      <ul>
+        <li class="fragment">Stores references, PDFs and research notes in one place</li>
+        <li class="fragment">Inserts citations while you write</li>
+        <li class="fragment">Generates the bibliography in the style you need</li>
+        <li class="fragment">Keeps one library that works across your documents</li>
+      </ul>
+    </section>
+
+    <section>
+      <span class="kicker">Why it matters</span>
+      <h2>A reference you do not check is a risk</h2>
+      <ul>
+        <li class="fragment">Readers trust your sources; a wrong one damages your credibility</li>
+        <li class="fragment">Reviewers and editors check references one by one</li>
+        <li class="fragment">Manual lists break when you rewrite, reorder or change styles</li>
+      </ul>
+      <div class="box-key fragment">A reference manager stores data. Checking that data is still your job.</div>
+    </section>
+
+    <section>
+      <span class="kicker">Types</span>
+      <h2>Common reference managers</h2>
+      <div class="cols">
+        <div>
+          <table>
+        <thead><tr><th>Tool</th><th>Type</th><th>Good for</th></tr></thead>
+        <tbody>
+          <tr class="fragment"><td><a href="https://www.zotero.org/">Zotero</a></td><td>Free, open source</td><td>Word, LibreOffice, Overleaf, browser capture</td></tr>
+          <tr class="fragment"><td><a href="https://www.mendeley.com/">Mendeley</a></td><td>Free, with paid tiers</td><td>PDF reading and annotation</td></tr>
+          <tr class="fragment"><td><a href="https://endnote.com/">EndNote</a></td><td>Commercial</td><td>Institutions that already license it</td></tr>
+          <tr class="fragment"><td><a href="https://www.jabref.org/">JabRef</a></td><td>Free, open source</td><td>BibTeX and LaTeX workflows</td></tr>
+        </tbody>
+      </table>
+          <p class="muted fragment">We use Zotero today. The ideas transfer to the others.</p>
+        </div>
+        <div>
+          <div class="logo-grid">
+            <a href="https://www.zotero.org/"><img src="img/zotero_logo.png" alt="Zotero logo"></a>
+            <a href="https://www.mendeley.com/"><img src="img/logo_mendeley.png" alt="Mendeley logo"></a>
+            <a href="https://endnote.com/"><img src="img/logo_endnote.png" alt="EndNote logo"></a>
+            <a href="https://www.jabref.org/"><img src="img/logo_jabref.png" alt="JabRef logo"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="kicker">Zotero</span>
+      <h2>Why we use Zotero</h2>
+      <div class="cols">
+      <div>
+      <ul>
+        <li class="fragment">Free and open source</li>
+        <li class="fragment">Stores references, PDFs and notes together</li>
+        <li class="fragment">Works with browsers, word processors and Overleaf</li>
+      </ul>
+      <div class="links fragment">
+        <p class="muted">Official site:</p>
+        <a href="https://www.zotero.org/">https://www.zotero.org/</a>
+      </div>
+      </div>
+      <div>
+        <img src="img/zotero_logo.png" alt="Zotero logo" style="width:70%; display:block; margin:0 auto">
+      </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="kicker">Activity · 15 min</span>
+      <h2>Install Zotero and its plugins</h2>
+      <div class="cols">
+        <div>
+          <ol>
+            <li>Create an account at <a href="https://www.zotero.org/">zotero.org</a></li>
+            <li>Download and install the desktop application</li>
+            <li>Link your account: <em>Edit → Settings → Sync</em></li>
+            <li>Install the browser connector and the Word or LibreOffice plugin</li>
+          </ol>
+          <p><strong>Done when:</strong> Zotero opens and shows "My Library".</p>
+          <p class="muted">Plugins: Zotero Connector · Word · LibreOffice · Overleaf (BibTeX export)</p>
+          <p><strong>Mode:</strong> individual, with help from your mentor</p>
+        </div>
+        <div>
+          <div class="qr-wrap" style="justify-content:center"><svg class="qr" viewBox="0 0 33 33" style="width:300px; height:300px;" role="img" aria-label="QR code: https://www.zotero.org/" shape-rendering="crispEdges"><rect width="33" height="33" fill="white"/><path fill="black" d="M4,4h7v1h-7zM16,4h1v1h-1zM18,4h1v1h-1zM22,4h7v1h-7zM4,5h1v1h-1zM10,5h1v1h-1zM12,5h4v1h-4zM17,5h2v1h-2zM22,5h1v1h-1zM28,5h1v1h-1zM4,6h1v1h-1zM6,6h3v1h-3zM10,6h1v1h-1zM12,6h1v1h-1zM18,6h1v1h-1zM22,6h1v1h-1zM24,6h3v1h-3zM28,6h1v1h-1zM4,7h1v1h-1zM6,7h3v1h-3zM10,7h1v1h-1zM12,7h1v1h-1zM14,7h2v1h-2zM17,7h2v1h-2zM22,7h1v1h-1zM24,7h3v1h-3zM28,7h1v1h-1zM4,8h1v1h-1zM6,8h3v1h-3zM10,8h1v1h-1zM13,8h1v1h-1zM16,8h2v1h-2zM20,8h1v1h-1zM22,8h1v1h-1zM24,8h3v1h-3zM28,8h1v1h-1zM4,9h1v1h-1zM10,9h1v1h-1zM13,9h2v1h-2zM16,9h3v1h-3zM20,9h1v1h-1zM22,9h1v1h-1zM28,9h1v1h-1zM4,10h7v1h-7zM12,10h1v1h-1zM14,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM22,10h7v1h-7zM12,11h2v1h-2zM15,11h1v1h-1zM20,11h1v1h-1zM4,12h1v1h-1zM10,12h1v1h-1zM12,12h2v1h-2zM15,12h5v1h-5zM21,12h2v1h-2zM25,12h3v1h-3zM4,13h1v1h-1zM6,13h2v1h-2zM12,13h2v1h-2zM17,13h3v1h-3zM21,13h1v1h-1zM23,13h5v1h-5zM4,14h1v1h-1zM10,14h1v1h-1zM13,14h2v1h-2zM17,14h3v1h-3zM21,14h5v1h-5zM27,14h2v1h-2zM4,15h6v1h-6zM11,15h3v1h-3zM15,15h1v1h-1zM18,15h1v1h-1zM20,15h2v1h-2zM23,15h1v1h-1zM25,15h1v1h-1zM28,15h1v1h-1zM4,16h7v1h-7zM13,16h1v1h-1zM19,16h1v1h-1zM22,16h1v1h-1zM28,16h1v1h-1zM4,17h1v1h-1zM7,17h2v1h-2zM11,17h1v1h-1zM13,17h2v1h-2zM16,17h1v1h-1zM18,17h4v1h-4zM23,17h1v1h-1zM27,17h1v1h-1zM4,18h1v1h-1zM6,18h1v1h-1zM8,18h3v1h-3zM12,18h1v1h-1zM14,18h1v1h-1zM17,18h1v1h-1zM19,18h7v1h-7zM27,18h2v1h-2zM4,19h1v1h-1zM12,19h1v1h-1zM14,19h1v1h-1zM16,19h1v1h-1zM18,19h2v1h-2zM21,19h1v1h-1zM23,19h1v1h-1zM25,19h2v1h-2zM28,19h1v1h-1zM4,20h1v1h-1zM6,20h2v1h-2zM10,20h1v1h-1zM12,20h3v1h-3zM16,20h3v1h-3zM20,20h5v1h-5zM26,20h1v1h-1zM12,21h1v1h-1zM14,21h1v1h-1zM20,21h1v1h-1zM24,21h1v1h-1zM4,22h7v1h-7zM13,22h1v1h-1zM16,22h1v1h-1zM20,22h1v1h-1zM22,22h1v1h-1zM24,22h1v1h-1zM28,22h1v1h-1zM4,23h1v1h-1zM10,23h1v1h-1zM13,23h1v1h-1zM15,23h1v1h-1zM18,23h3v1h-3zM24,23h1v1h-1zM27,23h1v1h-1zM4,24h1v1h-1zM6,24h3v1h-3zM10,24h1v1h-1zM13,24h5v1h-5zM19,24h6v1h-6zM26,24h3v1h-3zM4,25h1v1h-1zM6,25h3v1h-3zM10,25h1v1h-1zM16,25h3v1h-3zM22,25h1v1h-1zM27,25h2v1h-2zM4,26h1v1h-1zM6,26h3v1h-3zM10,26h1v1h-1zM13,26h1v1h-1zM16,26h5v1h-5zM25,26h2v1h-2zM28,26h1v1h-1zM4,27h1v1h-1zM10,27h1v1h-1zM13,27h2v1h-2zM16,27h1v1h-1zM18,27h4v1h-4zM23,27h2v1h-2zM28,27h1v1h-1zM4,28h7v1h-7zM12,28h1v1h-1zM14,28h5v1h-5zM20,28h2v1h-2zM25,28h1v1h-1zM28,28h1v1h-1z"/></svg></div>
+          <p class="muted" style="text-align:center">Scan to open zotero.org</p>
+          <div class="activity-meta" style="margin-top:0.6em">
+            <div class="activity-timer" data-minutes="15" data-editable></div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Hora prevista: 7:34. Actividad de 15 min, termina 7:49.</aside>
+    </section>
+
+    <section class="divider">
+      <h2>Part 2 · Capturing<br>references</h2>
+      <aside class="notes">Parte 3.2. Hora prevista de inicio: 7:50. Termina 8:15.</aside>
+    </section>
+
+    <!-- 17 · CAPTURE -->
+    <section>
+      <span class="kicker">DOI</span>
+      <h2>A DOI is the paper's permanent ID</h2>
+      <svg viewBox="0 0 1100 370" style="width:100%; max-height:370px;">
+        <rect class="svg-node" x="60" y="20" width="120" height="70" rx="8"/>
+        <text class="svg-label" x="120" y="66" text-anchor="middle" style="font-size:34px;">10.</text>
+        <rect class="svg-node" x="200" y="20" width="180" height="70" rx="8"/>
+        <text class="svg-label" x="290" y="66" text-anchor="middle" style="font-size:34px;">1038</text>
+        <rect class="svg-node" x="400" y="20" width="50" height="70" rx="8"/>
+        <text class="svg-label" x="425" y="66" text-anchor="middle" style="font-size:34px;">/</text>
+        <rect class="svg-node" x="470" y="20" width="330" height="70" rx="8"/>
+        <text class="svg-label" x="635" y="66" text-anchor="middle" style="font-size:34px;">nature14539</text>
+        <g class="anim-step" data-step="1">
+          <rect class="svg-node-hl" x="60" y="20" width="120" height="70" rx="8"/>
+          <text class="svg-label" x="120" y="66" text-anchor="middle" style="font-size:34px;">10.</text>
+          <text class="svg-label" x="60" y="160" style="font-size:24px;">10. → fixed prefix for every DOI</text>
+        </g>
+        <g class="anim-step" data-step="2">
+          <rect class="svg-node-hl" x="200" y="20" width="180" height="70" rx="8"/>
+          <text class="svg-label" x="290" y="66" text-anchor="middle" style="font-size:34px;">1038</text>
+          <text class="svg-label" x="60" y="200" style="font-size:24px;">1038 → the publisher (Nature)</text>
+        </g>
+        <g class="anim-step" data-step="3">
+          <rect class="svg-node-hl" x="470" y="20" width="330" height="70" rx="8"/>
+          <text class="svg-label" x="635" y="66" text-anchor="middle" style="font-size:34px;">nature14539</text>
+          <text class="svg-label" x="60" y="240" style="font-size:24px;">nature14539 → this article's code, set by the publisher</text>
+        </g>
+        <g class="anim-step" data-step="4">
+          <rect class="svg-node" x="60" y="280" width="800" height="60" rx="8"/>
+          <text class="svg-label" x="460" y="318" text-anchor="middle" style="font-size:26px;">doi.org/10.1038/nature14539 → the same paper</text>
+        </g>
+      </svg>
+      <span class="fragment"></span>
+      <span class="fragment"></span>
+      <span class="fragment"></span>
+      <span class="fragment"></span>
+      <div class="box-key fragment">The link can change. The DOI still finds the same paper.</div>
+      <aside class="notes">Hora prevista: 7:51.</aside>
+    </section>
+
+    <section>
+      <span class="kicker">Capture</span>
+      <h2>Save references from academic databases</h2>
+      <ol>
+        <li class="fragment">Open a record in Google Scholar, Scopus or PubMed</li>
+        <li class="fragment">Click the Zotero Connector icon in your browser</li>
+        <li class="fragment">Check the item in your library before you use it</li>
+      </ol>
+      <div class="links fragment">
+        <a href="https://scholar.google.com/">Google Scholar</a>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
+      </div>
+    </section>
+
+    <!-- 18 · MANUAL IMPORT -->
+    <section>
+      <span class="kicker">Manual import</span>
+      <h2>Some fields fill in automatically; some you check</h2>
+      <table>
+        <thead><tr><th>Field</th><th>Usually automatic</th><th>Check by hand</th></tr></thead>
+        <tbody>
+          <tr class="fragment"><td>Title</td><td>Yes</td><td>Capitalization and typos</td></tr>
+          <tr class="fragment"><td>Authors</td><td>Yes</td><td>Order and spelling</td></tr>
+          <tr class="fragment"><td>Year</td><td>Yes</td><td>Print vs. online date</td></tr>
+          <tr class="fragment"><td>DOI</td><td>Often</td><td>It must resolve to the same paper</td></tr>
+          <tr class="fragment"><td>Journal</td><td>Often</td><td>Journal name and volume</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 19 · ACTIVITY CAPTURE -->
+    <section>
+      <span class="kicker">Activity · 5 min</span>
+      <h2>Which fields filled in by themselves?</h2>
+      <div class="cols">
+        <div>
+          <ol>
+            <li>Look at one item you captured or imported</li>
+            <li>Write down two fields that were filled in automatically</li>
+            <li>Write down one field you must check by hand</li>
+          </ol>
+        </div>
+        <div class="activity-meta">
+          <div class="activity-timer" data-minutes="5" data-editable></div>
+          <p><strong>Mode:</strong> individual</p>
+        </div>
+      </div>
+      <aside class="notes">Hora prevista: 8:07. Actividad de 5 min, termina 8:12.</aside>
+    </section>
+
+    <!-- CHECKPOINT · PREPRINT VS. PUBLISHED -->
+    <section>
+      <span class="kicker">Checkpoint</span>
+      <div class="quiz" data-correct="b">
+        <p class="quiz-question">A paper is available as an arXiv preprint and was later published at a conference. You read the conference version. What do you cite?</p>
+        <button class="quiz-option" data-opt="a">The arXiv preprint, because it is free and easy to find.</button>
+        <button class="quiz-option" data-opt="b">The conference version you read, with the conference name and pages.</button>
+        <button class="quiz-option" data-opt="c">Both, in the same entry.</button>
+        <div class="quiz-explain">
+          <p><strong>Correct: B.</strong> Cite the version you actually read and that went through peer review.</p>
+          <p><strong>A:</strong> Free access does not make the preprint the version to cite.</p>
+          <p><strong>C:</strong> Two versions in one entry duplicate the same work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 · LIBRARY -->
+    <section>
+      <span class="kicker">Library</span>
+      <h2>Collections, tags and notes</h2>
+      <img src="img/zotero_biblioteca_ejemplo.png" alt="Example Zotero library with collections, items and a metadata panel" style="width:100%; max-height:470px; object-fit:contain">
+      <p class="muted">Live demo first. This capture is the backup if the connection fails.</p>
+    </section>
+
+    <!-- 21 · DIVIDER PART 3 -->
+    <section class="divider">
+      <h2>Break</h2>
+      <div class="activity-timer" data-minutes="10" data-editable></div>
+      <aside class="notes">Pausa de 8:15 a 8:25. Regreso a las 8:25 con la parte 3.3.</aside>
+    </section>
+
+    <section class="divider">
+      <h2>Part 3 · Writing<br>with references</h2>
+      <aside class="notes">Parte 3.3. Hora prevista de inicio: 8:25. Termina 8:55.</aside>
+    </section>
+
+    <!-- 22 · INSERT CITATIONS -->
+    <section>
+      <span class="kicker">Word</span>
+      <h2>Insert a citation from Zotero</h2>
+      <ol>
+        <li class="fragment">Place the cursor where the citation goes</li>
+        <li class="fragment">Click <em>Add/Edit Citation</em> in the Zotero tab</li>
+        <li class="fragment">Search your library and select the item</li>
+        <li class="fragment">Click <em>Add/Edit Bibliography</em> to generate the list</li>
+      </ol>
+    </section>
+
+    <!-- 23 · SAME REFERENCE, THREE STYLES -->
+    <section>
+      <span class="kicker">Citation styles</span>
+      <h2>One reference, two styles</h2>
+      <table>
+        <thead><tr><th>Style</th><th>Reference</th></tr></thead>
+        <tbody>
+          <tr class="fragment"><td>APA</td><td>LeCun, Y., Bengio, Y., &amp; Hinton, G. (2015). Deep learning. <em>Nature, 521</em>(7553), 436–444. https://doi.org/10.1038/nature14539</td></tr>
+          <tr class="fragment"><td>IEEE</td><td>Y. LeCun, Y. Bengio, and G. Hinton, "Deep learning," <em>Nature</em>, vol. 521, no. 7553, pp. 436–444, 2015.</td></tr>
+        </tbody>
+      </table>
+      <p class="muted fragment">Same data in the library. Only the format changes.</p>
+    </section>
+
+    <!-- 24 · CHANGE STYLE -->
+    <section>
+      <span class="kicker">Citation styles</span>
+      <h2>Change the style without rewriting</h2>
+      <ol>
+        <li class="fragment">In the Zotero tab, click <em>Document Preferences</em></li>
+        <li class="fragment">Choose a new style, for example APA or IEEE</li>
+        <li class="fragment">Click <em>Refresh</em>, or update the bibliography</li>
+      </ol>
+      <div class="box-key fragment">Your text stays the same. Only the formatting changes.</div>
+    </section>
+
+    <!-- 25 · ACTIVITY WORD -->
+    <section>
+      <span class="kicker">Activity · 8 min</span>
+      <h2>Cite and change the style</h2>
+      <div class="cols">
+        <div>
+          <ol>
+            <li>Open a Word document (or LibreOffice)</li>
+            <li>Insert two citations from your library</li>
+            <li>Generate the bibliography</li>
+            <li>Change the style to APA, then to IEEE</li>
+          </ol>
+        </div>
+        <div class="activity-meta">
+          <div class="activity-timer" data-minutes="8" data-editable></div>
+          <p><strong>Mode:</strong> individual</p>
+        </div>
+      </div>
+      <aside class="notes">Hora prevista: 8:38. Actividad de 8 min, termina 8:46.</aside>
+    </section>
+
+    <!-- 26 · ORGANIZATION -->
+    <section>
+      <span class="kicker">Organization</span>
+      <h2>Tags mark what needs work</h2>
+      <ul>
+        <li class="fragment">Collections group items by project or chapter</li>
+        <li class="fragment">Tags describe status, such as <code>pending verification</code></li>
+        <li class="fragment">Notes keep your reasons for choosing a source</li>
+        <li class="fragment">Sync keeps the library on all your devices</li>
+      </ul>
+    </section>
+
+    <!-- 27 · ACTIVITY TAGS -->
+    <!-- 28 · DIVIDER PART 4 -->
+    <section class="divider">
+      <h2>Part 4 · Verifying<br>your references</h2>
+      <aside class="notes">Parte 3.4. Hora prevista de inicio: 8:55. Termina 9:45.</aside>
+    </section>
+
+    <section>
+      <span class="kicker">Audit</span>
+      <h2>What to check in every entry</h2>
+      <table>
+        <thead><tr><th>Field</th><th>Question</th></tr></thead>
+        <tbody>
+          <tr class="fragment"><td>DOI</td><td>Does it lead to the same title and authors?</td></tr>
+          <tr class="fragment"><td>Authors</td><td>Are the names and order correct?</td></tr>
+          <tr class="fragment"><td>Year</td><td>Does it match the publication?</td></tr>
+          <tr class="fragment"><td>Title</td><td>Is it spelled and capitalized correctly?</td></tr>
+          <tr class="fragment"><td>Duplicates</td><td>Is the same paper listed twice under different keys?</td></tr>
+          <tr class="fragment"><td>Existence</td><td>Can you find the paper in a database?</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <span class="kicker">Activity · 20 min</span>
+      <h2>Check and complete every reference from AI</h2>
+      <div class="cols">
+        <div>
+          <ol>
+            <li>List every reference in your draft</li>
+            <li>Add each reference to your Zotero library, for example with its DOI</li>
+            <li>Check each one: does the DOI open the same paper? Are the authors, year and title correct?</li>
+            <li>Fill in the missing fields in Zotero</li>
+            <li>Tag each item <code>verified</code> or <code>pending verification</code></li>
+            <li>Delete any reference you cannot find</li>
+          </ol>
+        </div>
+        <div class="activity-meta">
+          <div class="activity-timer" data-minutes="20" data-editable></div>
+          <p><strong>Mode:</strong> teams</p>
+        </div>
+      </div>
+      <aside class="notes">Hora prevista: 8:59. Actividad de 20 min, termina 9:19.</aside>
+    </section>
+
+    <section>
+      <span class="kicker">Overleaf</span>
+      <h2>How do you move your library into Overleaf?</h2>
+      <ul>
+        <li class="fragment">In Zotero, select your collection and export it as a BibTeX file</li>
+        <li class="fragment">Citation keys can change each time you export</li>
+        <li class="fragment">We recommend installing <em>Better BibTeX</em>, which keeps the keys fixed</li>
+      </ul>
+      <p class="muted fragment">If a key changes, every <code>\cite{}</code> in your file breaks. The install steps are on the next slide.</p>
+    </section>
+
+    <section>
+      <span class="kicker">Install · 5 min</span>
+      <h2>Install the Better BibTeX plugin</h2>
+      <ol>
+        <li class="fragment">Download the latest <code>.xpi</code> file from the Better BibTeX releases page</li>
+        <li class="fragment">In Zotero, open <em>Tools → Plugins</em></li>
+        <li class="fragment">Click the gear icon, then <em>Install Plugin From File</em></li>
+        <li class="fragment">Select the <code>.xpi</code> file and click <em>Install</em></li>
+        <li class="fragment">Restart Zotero if the Better BibTeX option does not appear</li>
+      </ol>
+      <div class="links fragment">
+        <a href="https://github.com/retorquere/zotero-better-bibtex/releases/latest">Better BibTeX releases: github.com/retorquere/zotero-better-bibtex</a>
+      </div>
+      <p class="muted fragment">On a Mac, the Tools menu is at the top of the screen, not inside the Zotero window.</p>
+      <aside class="notes">Hora prevista: 9:22. Actividad de 5 min, termina 9:27.</aside>
+    </section>
+
+    <section>
+      <span class="kicker">Export</span>
+      <h2>Export your library as references.bib</h2>
+      <ol>
+        <li class="fragment">In Zotero, select the collection with your sources</li>
+        <li class="fragment">Right-click, then choose <em>Export Collection</em></li>
+        <li class="fragment">Choose <em>Better BibTeX</em> and save the file as <code>references.bib</code></li>
+        <li class="fragment">In Overleaf, upload it to the same folder as your main <code>.tex</code> file</li>
+      </ol>
+      <p class="muted fragment">The name must match <code>\addbibresource{references.bib}</code>.</p>
+    </section>
+
+    <section>
+      <span class="kicker">Activity · 10 min</span>
+      <h2>Cite your verified sources in LaTeX</h2>
+      <div class="cols">
+        <div>
+          <ol>
+            <li>Replace each citation in your draft with <code>\cite{key}</code></li>
+            <li>Export your collection as <code>references.bib</code></li>
+            <li>Upload it to Overleaf and compile with Biber</li>
+            <li>Check that every citation appears in the bibliography</li>
+          </ol>
+        </div>
+        <div class="activity-meta">
+          <div class="activity-timer" data-minutes="10" data-editable></div>
+          <p class="muted">Use <code>\cite{key}</code> for a parenthetical citation, such as (LeCun et al., 2015). Use <code>\textcite{key}</code> for a narrative citation, such as LeCun et al. (2015) describe… These are biblatex commands. In APA, both work with biblatex-apa. In IEEE, both give a number in brackets. You may see <code>\citep</code> and <code>\citet</code> in other examples; those are natbib commands and do not work with biblatex.</p>
+        </div>
+      </div>
+      <aside class="notes">Hora prevista: 9:30. Actividad de 10 min, termina 9:40.</aside>
+    </section>
+
+    <section>
+      <span class="kicker">Validation · 4 min</span>
+      <h2>Show your sources to your mentor</h2>
+      <ul>
+        <li class="fragment">Show your Zotero library with the references you checked</li>
+        <li class="fragment">Show your Overleaf draft, with the citations and bibliography compiled</li>
+        <li class="fragment">The mentor checks one reference in both places</li>
+      </ul>
+      <div class="activity-meta fragment">
+        <div class="activity-timer" data-minutes="4" data-editable></div>
+      <aside class="notes">Hora prevista: 9:40. Validación de 4 min, termina 9:44.</aside>
+    </section>
+
+    <section>
+      <span class="kicker">Checkpoint</span>
+      <div class="quiz" data-correct="a">
+        <p class="quiz-question">An AI tool gives you a reference with a DOI. What should you do first?</p>
+        <button class="quiz-option" data-opt="a">Open the DOI and check that it leads to the same paper</button>
+        <button class="quiz-option" data-opt="b">Add it, because AI usually gets DOIs right</button>
+        <button class="quiz-option" data-opt="c">Change the year so it matches your text</button>
+        <div class="quiz-explain">
+          <p><strong>Correct: A.</strong> A DOI must be verified against the source.</p>
+          <p><strong>B:</strong> AI can invent DOIs, so an unchecked DOI is not evidence.</p>
+          <p><strong>C:</strong> Changing data to fit your text is fabrication.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="divider">
+      <h2>Wrap-up</h2>
+      <aside class="notes">Hora prevista de inicio: 9:45. Cierre hasta 9:50.</aside>
+    </section>
+
+    <!-- 40 · RESPONSIBLE USE -->
+    <!-- 41 · DECLARE AI USE -->
+    <!-- 42 · WHY IT MATTERS TODAY -->
+    <section>
+      <span class="kicker kicker-ai">Why it matters today</span>
+      <h2>AI makes references faster and riskier</h2>
+      <div class="box-ai" data-label="Why it matters today">
+        <ul>
+          <li class="fragment">Tools now write fluent text with references that look real</li>
+          <li class="fragment">Checking a reference takes less time than a retraction</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 43 · TAKEAWAYS -->
+    <section>
+      <span class="kicker">Key takeaways</span>
+      <h2>Three ideas to keep</h2>
+      <ul>
+        <li class="fragment">A reference manager organizes data; you verify it</li>
+        <li class="fragment">Zotero connects your library to Word, LibreOffice and Overleaf</li>
+        <li class="fragment">AI helps you search; it does not replace reading the source</li>
+      </ul>
+    </section>
+
+    <!-- 44 · REFERENCES -->
+    <section>
+      <span class="kicker">Session 3</span>
+      <h2>References and further reading</h2>
+      <div class="refs cols">
+        <div>
+          <h3>References</h3>
+          <ul>
+            <li><span class="ref-type">Paper</span> LeCun, Y., Bengio, Y., &amp; Hinton, G. Deep learning. <em>Nature</em>, 521(7553), 436–444, 2015. <a href="https://doi.org/10.1038/nature14539">doi.org/10.1038/nature14539</a></li>
+            <li><span class="ref-type">Paper</span> Silver, D., et al. Mastering the game of Go with deep neural networks and tree search. <em>Nature</em>, 529(7587), 484–489, 2016. <a href="https://doi.org/10.1038/nature16961">doi.org/10.1038/nature16961</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Further reading</h3>
+          <ul>
+            <li><span class="ref-type">Web</span> <a href="https://www.zotero.org/">Zotero</a> <span class="ref-nota">— official site and documentation</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="refs-ia">Note: these slides were prepared with the support of artificial intelligence tools (Claude, Anthropic).</p>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="js/shstyle.js"></script>
+<script src="js/timer.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280, height: 720, margin: 0.06,
+    hash: true, progress: true, slideNumber: 'c/t', controls: true,
+    transition: 'slide', transitionSpeed: 'fast',
+    plugins: [ RevealHighlight, RevealNotes ]
+  }).then(() => {
+    SHStyle.init({});
+  });
+</script>
+</body>
+</html>
